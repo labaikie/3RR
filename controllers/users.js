@@ -15,4 +15,13 @@ function create(req, res) {
   }
 }
 
-module.exports = { create }
+function update(req, res) {
+  const currentAccount = req.decoded._doc
+  const updates = req.body
+  const query = User.findByIdAndUpdate(currentAccount._id, updates, { new: true }).exec()
+  query
+    .then((user) => { success(res, data) })
+    .catch((err) => { error(res, err) })
+}
+
+module.exports = { create, update }
