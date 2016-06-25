@@ -5,7 +5,18 @@ const error = require('../libs/error')
 const success = require('../libs/success')
 
 function authenticate(req, res) {
-
+  const query = User.findOne({ email: req.body.email }).exec()
+  query
+    .then((user) => {
+      if(user.password != req.body.password) {
+        error(res, 'wrong password')
+      } else {
+        const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: 3600 })
+        const response = { token: token, user: user }
+        return success(res, response)
+      }
+    })
+    .catch((err) => { return error(res, 'No user') })
 }
 
 function checkAuth(req, res, next) {
