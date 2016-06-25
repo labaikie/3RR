@@ -12,20 +12,32 @@ function create(req, res) {
 }
 
 function update(req, res) {
-  Post.findById(id, function(err, post){
-      const body = req.body
-      if (body)     post.title    = req.body.title
-  }
+  const updates = req.body.updates
+  const postId = req.body.postId
+  const query = Post.findByIdAndUpdate(postId, updates, { new: true }).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
 }
 
-var delete = function(req, res){
-    Post.remove({ id }, function(err, post){
-        if(err) return res.send(err)
-        res.json({message:'Post deleted!'});
-    });
+function get(req, res) {
+  const query = Post.findById(req.query.postId).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
+}
+
+function delete(req, res) {
+  const postId = req.query.postId
+  const query = Post.findByIdAndRemove(postId).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
 }
 
 module.exports = {
   create,
   update,
+  get,
+  delete
 }
