@@ -4,6 +4,8 @@ const router   = new express.Router()
 const postCtrl = require('../controllers/posts')
 const authCtrl = require('../controllers/auth')
 const userCtrl = require('../controllers/users')
+const tagCtrl    = require('../controllers/tags')
+
 
 // UNPROTECTED
 router.get('/test', (req, res) => { res.json('api alive') })
@@ -22,5 +24,9 @@ router.use(checkAuth)
 // PROTECTED ROUTES
 
 router.put('/user/update', userCtrl.update)
+
+
+router.post('/tag/create', tagCtrl.create)
+router.get('/alltags', tagCtrl.get)
 
 module.exports = router
