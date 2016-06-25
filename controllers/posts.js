@@ -11,6 +11,33 @@ function create(req, res) {
     .catch((err) => { error(res, err) })
 }
 
+function update(req, res) {
+  const updates = req.body.updates
+  const postId = req.body.postId
+  const query = Post.findByIdAndUpdate(postId, updates, { new: true }).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
+}
+
+function get(req, res) {
+  const query = Post.findById(req.query.postId).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
+}
+
+function delete(req, res) {
+  const postId = req.query.postId
+  const query = Post.findByIdAndRemove(postId).exec()
+  query
+    .then((post) => { success(res, data)})
+    .catch((err) => { error(res, err)})
+}
+
 module.exports = {
   create,
+  update,
+  get,
+  delete
 }
