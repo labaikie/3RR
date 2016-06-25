@@ -2,6 +2,7 @@
 const express    = require('express')
 const router     = new express.Router()
 const postCtrl   = require('../controllers/posts')
+const tagCtrl    = require('../controllers/tags')
 const {checkAuth} = require('../controllers/auth')
 
 
@@ -14,5 +15,9 @@ router.use(checkAuth)
 
 // PROTECTED ROUTES
 router.post('/post/create', postCtrl.create)
+
+
+router.post('/tag/create', tagCtrl.create)
+
 
 module.exports = router
