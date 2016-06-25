@@ -21,6 +21,7 @@ function update(req, res) {
 }
 
 function get(req, res) {
+  const postId = req.query.postId
   const query = Post.findById(req.query.postId).exec()
   query
     .then((post) => { success(res, data)})
