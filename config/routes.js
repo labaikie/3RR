@@ -15,7 +15,7 @@ router.use(checkAuth)
 // PROTECTED ROUTES
 router.post('/post/create', postCtrl.create)
 router.put('/post/update', postCtrl.update)
-router.get('/post/create', postCtrl.get)
-router.delete('/post/delete', postCtrl.delete)
+router.get('/post/get', postCtrl.get)
+router.delete('/post/delete', postCtrl.destroy)
 
 module.exports = router

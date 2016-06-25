@@ -28,7 +28,7 @@ function get(req, res) {
     .catch((err) => { error(res, err)})
 }
 
-function delete(req, res) {
+function destroy(req, res) {
   const postId = req.query.postId
   const query = Post.findByIdAndRemove(postId).exec()
   query
@@ -40,5 +40,5 @@ module.exports = {
   create,
   update,
   get,
-  delete
+  destroy
 }
