@@ -13,7 +13,6 @@ function create(req, res) {
 
 function update(req, res) {
   Post.findById(id, function(err, post){
-
       const body = req.body
       if (body)     post.title    = req.body.title
   }
