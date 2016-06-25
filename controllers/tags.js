@@ -19,7 +19,7 @@ function get(req, res) {
     .catch((err) => { error(res, err)})
 }
 
-function delete(req, res) {
+function destroy(req, res) {
   const tagId = req.query.tagId
   const query = Tag.findByIdandRemove(TagId).exec()
   query
@@ -30,5 +30,5 @@ function delete(req, res) {
 module.exports = {
   create,
   get,
-  delete
+  destroy
 }

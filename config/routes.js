@@ -18,6 +18,6 @@ router.post('/post/create', postCtrl.create)
 
 
 router.post('/tag/create', tagCtrl.create)
-
+router.get('/alltags', tagCtrl.get)
 
 module.exports = router
