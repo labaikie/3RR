@@ -10,12 +10,15 @@ router.get('/test', (req, res) => {
   res.json('api alive')
 })
 
-router.use(checkAuth)
-
-// PROTECTED ROUTES
 router.post('/post/create', postCtrl.create)
 router.put('/post/update', postCtrl.update)
 router.get('/post/get', postCtrl.get)
 router.delete('/post/delete', postCtrl.destroy)
+
+router.post('/post/getByTag', postCtrl.getByTag)
+
+router.use(checkAuth)
+
+// PROTECTED ROUTES
 
 module.exports = router
