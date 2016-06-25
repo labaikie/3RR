@@ -5,7 +5,7 @@ const error = require('../libs/error')
 const success = require('../libs/success')
 
 function authenticate(req, res) {
-  const query = User.findOne({ email: req.body.email }).exec()
+  const query = User.findOne({ userName: req.body.userName }).exec()
   query
     .then((user) => {
       if(user.password != req.body.password) {
